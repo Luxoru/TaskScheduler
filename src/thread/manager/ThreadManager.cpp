@@ -18,7 +18,7 @@ ThreadManager::~ThreadManager() {
     // First, ensure all threads complete their tasks
     while (std::ranges::any_of(threadPool, []( auto& thread) {
         return thread->getNumberOfTasksToComplete() > 0;
-    }))
+    })){}
 
     // Stop all threads
     for (auto& thread : threadPool) {
