@@ -3,7 +3,7 @@
 #include <stack>
 #include <thread>
 
-#include "../Task/Task.h"
+#include "task/Task.h"
 
 class TaskThread {
 
@@ -17,8 +17,11 @@ class TaskThread {
 public:
 
     explicit TaskThread(int threadID);
-    TaskThread(TaskThread&& other) = delete; ;
+
+    TaskThread(TaskThread&& other) = delete;
+
     TaskThread& operator=(TaskThread&&) = delete;
+
     ~TaskThread();
 
     bool pushTask(Task&& task);
@@ -27,7 +30,7 @@ public:
 
     void stop();
 
-    int getNumberOfTasksToComplete() const;
+    [[nodiscard]] int getNumberOfTasksToComplete() const;
 
     [[nodiscard]] bool isRunning() const;
 
@@ -40,6 +43,5 @@ public:
 private:
 
     void run();
-
 
 };

@@ -1,8 +1,5 @@
 #include "task/Task.h"
 
-
-
-
 int Task::getTaskID() const{
   return taskID;
 
@@ -15,7 +12,6 @@ bool Task::isRunning() const{
 bool Task::isCancelled() const{
   return cancelled;
 }
-
 
 void Task::run() const{
   callback();

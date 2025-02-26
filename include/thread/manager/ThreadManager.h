@@ -1,8 +1,6 @@
 #pragma once
 #include <vector>
-
-#include "../TaskThread.h"
-
+#include "thread/TaskThread.h"
 
 class ThreadManager {
 
@@ -12,11 +10,12 @@ class ThreadManager {
 public:
 
     explicit ThreadManager(int maxThreadPoolSize);
+
     ~ThreadManager();
 
     bool createThread();
 
-    bool pushTask(Task&& task);
+    bool pushTask(Task&& task) const;
 
     [[nodiscard]] const std::vector<std::unique_ptr<TaskThread>>& getThreads() const;
 

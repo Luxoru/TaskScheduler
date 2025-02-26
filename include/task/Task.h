@@ -18,11 +18,11 @@ public:
   Task(const Task& other) :
       taskID(other.taskID), callback(other.callback) {}
 
-  int getTaskID() const;
+  [[nodiscard]] int getTaskID() const;
 
-  bool isRunning() const;
+  [[nodiscard]] bool isRunning() const;
 
-  bool isCancelled() const;
+  [[nodiscard]] bool isCancelled() const;
 
   void run() const;
 

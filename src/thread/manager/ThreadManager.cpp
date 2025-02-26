@@ -5,9 +5,6 @@
 #include <iostream>
 #include <algorithm>
 
-
-
-
 static int currentThreadID = 0;
 
 ThreadManager::ThreadManager(const int maxThreadPoolSize) : maxThreadPoolSize(maxThreadPoolSize) {
@@ -15,22 +12,18 @@ ThreadManager::ThreadManager(const int maxThreadPoolSize) : maxThreadPoolSize(ma
 }
 
 ThreadManager::~ThreadManager() {
-    // First, ensure all threads complete their tasks
+
     while (std::ranges::any_of(threadPool, []( auto& thread) {
         return thread->getNumberOfTasksToComplete() > 0;
     })){}
 
-    // Stop all threads
-    for (auto& thread : threadPool) {
+    for (const auto& thread : threadPool) {
         thread->stop();
     }
 
-    // Wait until all threads are stopped
     while (std::ranges::any_of(threadPool, []( auto& thread) {
         return !thread->isStopped();
     }));
-
-
 }
 
 bool ThreadManager::createThread() {
@@ -48,9 +41,7 @@ bool ThreadManager::createThread() {
 }
 
 
-bool ThreadManager::pushTask(Task&& task) {
-
-
+bool ThreadManager::pushTask(Task&& task) const {
 
     const size_t randomIndex = rand() % threadPool.size();
 
